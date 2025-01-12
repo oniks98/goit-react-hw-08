@@ -1,0 +1,30 @@
+.item {
+  width: 260px;
+  padding: 5px 10px;
+  border: 2px solid #939090;
+  border-radius: 4px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  display: block;
+  text-align: center;
+  padding: 4px 8px;
+  cursor: pointer;
+  background-color: rgb(206, 210, 232);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  height: 30px;
+}
+
+.btn:hover {
+  background-color: rgb(176, 176, 236);
+}
+
+.text {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
