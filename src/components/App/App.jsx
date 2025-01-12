@@ -24,22 +24,12 @@ function App() {
     setContacts(prevContacts => [...prevContacts, newContact]);
   };
 
-  const deleteContact = contactId => {
-    setContacts(prevContacts => {
-      return prevContacts.filter(contact => contact.id !== contactId);
-    });
-  };
-
-  const visibleContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(search.toLowerCase())
-  );
-
   return (
     <div className={css.container}>
       <h1>Phonebook</h1>
       <ContactForm onAdd={addContact} />
       <SearchBox value={search} onSearch={setSearch} />
-      <ContactList contacts={visibleContacts} onDelete={deleteContact} />
+      <ContactList />
     </div>
   );
 }

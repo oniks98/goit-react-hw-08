@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+import { addContact } from './../redux/actions';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useId } from 'react';
 import * as Yup from 'yup';
@@ -22,16 +24,20 @@ const initialValues = {
   phone: '',
 };
 
-function ContactForm({ onAdd }) {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
   const nameFieldId = useId();
   const phoneFieldId = useId();
 
   const handleSumbit = (values, actions) => {
-    onAdd({
-      id: nanoid(),
-      name: values.username,
-      number: values.phone,
-    });
+    dispatch(
+      addContact({
+        id: nanoid(),
+        name: values.username,
+        number: values.phone,
+      })
+    );
     actions.resetForm();
   };
 
@@ -82,6 +88,6 @@ function ContactForm({ onAdd }) {
       </Form>
     </Formik>
   );
-}
+};
 
 export default ContactForm;
