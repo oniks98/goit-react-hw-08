@@ -3,7 +3,7 @@ import SearchBox from '../SearchBox/SearchBox';
 import ContactList from '../ContactList/ContactList';
 import css from './App.module.css';
 
-function App() {
+const App = () => {
   return (
     <div className={css.container}>
       <h1>Phonebook</h1>
@@ -12,6 +12,6 @@ function App() {
       <ContactList />
     </div>
   );
-}
+};
 
 export default App;

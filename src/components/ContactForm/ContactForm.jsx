@@ -38,6 +38,7 @@ const ContactForm = () => {
         number: values.phone,
       })
     );
+
     actions.resetForm();
   };
 
