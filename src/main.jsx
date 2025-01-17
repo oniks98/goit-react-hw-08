@@ -10,7 +10,9 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
+      {/* Обгортає застосунок у Redux store, щоб зробити сховище доступним у всіх компонентах */}
       <PersistGate loading={null} persistor={persistor}>
+        {/* PersistGate затримує рендеринг застосунку, поки завантажуються збережені дані з локального сховища */}
         <App />
       </PersistGate>
     </Provider>
