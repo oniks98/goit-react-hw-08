@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux'; // Хук для відправлення екшенів у Redux
-import { addContact } from '../../redux/contactsSlice'; // Імпортуємо екшен для додавання контакту
+import { addContact } from '../../redux/contactsOps'; // Імпортуємо екшен для додавання контакту
 import { Formik, Form, Field, ErrorMessage } from 'formik'; // Бібліотека для керування формами
 import { useId } from 'react'; // Хук для генерації унікальних ID
 import * as Yup from 'yup'; // Бібліотека для валідації форм
-import { nanoid } from 'nanoid/non-secure'; // Генератор унікальних ідентифікаторів
 import css from './ContactForm.module.css';
 
 // Схема валідації для форми
@@ -14,8 +13,8 @@ const ContactFormSchema = Yup.object().shape({
     .required('Required'), // Поле є обов’язковим
   phone: Yup.string()
     .matches(
-      /^\d{3}-\d{2}-\d{2}$/, // Шаблон для номера телефону у форматі XXX-XX-XX
-      'Phone number must be in the format XXX-XX-XX'
+      /^\d{3}-\d{3}-\d{4}$/, // Шаблон для номера телефону у форматі XXX-XXX-XXXX
+      'Phone number must be in the format XXX-XXX-XXXX'
     )
     .required('Required'), // Поле є обов’язковим
 });
@@ -36,7 +35,6 @@ const ContactForm = () => {
   const handleSumbit = (values, actions) => {
     dispatch(
       addContact({
-        id: nanoid(), // Генеруємо унікальний ID для нового контакту
         name: values.username, // Зберігаємо ім'я
         number: values.phone, // Зберігаємо номер телефону
       })
