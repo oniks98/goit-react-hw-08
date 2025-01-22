@@ -1,21 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'; // Імпортуємо функцію createSlice для створення Redux slice
+import { createSlice } from '@reduxjs/toolkit';
 
-// Створюємо slice для управління фільтром контактів
 const filtersSlice = createSlice({
-  name: 'filters', // Назва slice
+  name: 'filters',
   initialState: {
-    name: '', // Початкове значення фільтра (порожнє)
+    name: '',
   },
   reducers: {
-    // Змінює значення фільтра
     changeFilter(state, action) {
-      state.name = action.payload; // Оновлює фільтр на нове значення
+      state.name = action.payload;
     },
   },
 });
 
-// Експортуємо екшен для зміни фільтра
 export const { changeFilter } = filtersSlice.actions;
 
-// Експортуємо редюсер для додавання в store
 export default filtersSlice.reducer;

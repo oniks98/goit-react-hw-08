@@ -1,16 +1,15 @@
-import { useDispatch } from 'react-redux'; // Хук для відправлення екшенів у Redux
-import { deleteContact } from '../../redux/contactsOps'; // Імпортуємо екшен для видалення контакту
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contactsOps';
 
-import { HiUser } from 'react-icons/hi'; // Іконка користувача
-import { BsFillTelephoneFill } from 'react-icons/bs'; // Іконка телефону
+import { HiUser } from 'react-icons/hi';
+import { BsFillTelephoneFill } from 'react-icons/bs';
 import css from './Contact.module.css';
 
-// Компонент Contact відображає окремий контакт у списку
 const Contact = ({ id, name, number }) => {
-  const dispatch = useDispatch(); // Отримуємо функцію dispatch для відправлення екшенів у Redux
+  const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteContact(id)); // Викликаємо екшен для видалення контакту за його ID
+    dispatch(deleteContact(id));
   };
 
   return (
@@ -26,7 +25,7 @@ const Contact = ({ id, name, number }) => {
         </p>
       </div>
       <button className={css.btn} type="button" onClick={handleDelete}>
-        Delete {/* Кнопка для видалення контакту */}
+        Delete
       </button>
     </div>
   );
