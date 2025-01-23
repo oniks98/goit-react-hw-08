@@ -1,8 +1,9 @@
-import { useSelector } from 'react-redux';
-import Contact from '../Contact/Contact';
+import { useSelector } from 'react-redux'; // Хук для отримання даних зі сховища Redux
+import Contact from '../Contact/Contact'; // Імпортуємо компонент Contact
 import { selectVisibleContacts } from '../../redux/selectors';
 import css from './ContactList.module.css';
 
+// Компонент ContactList відображає список контактів
 const ContactList = () => {
   const contacts = useSelector(selectVisibleContacts);
 
@@ -10,7 +11,7 @@ const ContactList = () => {
     <ul className={css.list}>
       {contacts.map(contact => (
         <li className={css.item} key={contact.id}>
-          <Contact {...contact} />
+          <Contact {...contact} /> {/* Передаємо контакт у компонент Contact */}
         </li>
       ))}
     </ul>

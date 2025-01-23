@@ -1,51 +1,57 @@
-import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsOps';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useId } from 'react';
-import * as Yup from 'yup';
+import { useDispatch } from 'react-redux'; // Хук для відправлення екшенів у Redux
+import { addContact } from '../../redux/contactsOps'; // Імпортуємо екшен для додавання контакту
+import { Formik, Form, Field, ErrorMessage } from 'formik'; // Бібліотека для керування формами
+import { useId } from 'react'; // Хук для генерації унікальних ID
+import * as Yup from 'yup'; // Бібліотека для валідації форм
 import css from './ContactForm.module.css';
 
+// Схема валідації для форми
 const ContactFormSchema = Yup.object().shape({
   username: Yup.string()
-    .min(3, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
+    .min(3, 'Too Short!') // Мінімальна довжина 3 символи
+    .max(50, 'Too Long!') // Максимальна довжина 50 символів
+    .required('Required'), // Поле є обов’язковим
   phone: Yup.string()
     .matches(
-      /^\d{3}-\d{3}-\d{4}$/,
+      /^\d{3}-\d{3}-\d{4}$/, // Шаблон для номера телефону у форматі XXX-XXX-XXXX
       'Phone number must be in the format XXX-XXX-XXXX'
     )
-    .required('Required'),
+    .required('Required'), // Поле є обов’язковим
 });
 
+// Початкові значення для форми
 const initialValues = {
   username: '',
   phone: '',
 };
 
+// Компонент ContactForm для додавання контакту
 const ContactForm = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Отримуємо dispatch для відправлення екшенів
 
-  const nameFieldId = useId();
-  const phoneFieldId = useId();
+  const nameFieldId = useId(); // Генеруємо унікальний ID для поля імені
+  const phoneFieldId = useId(); // Генеруємо унікальний ID для поля телефону
 
   const handleSumbit = (values, actions) => {
     dispatch(
       addContact({
-        name: values.username,
-        number: values.phone,
+        name: values.username, // Зберігаємо ім'я
+        number: values.phone, // Зберігаємо номер телефону
       })
     );
-    actions.resetForm();
+
+    actions.resetForm(); // Очищаємо форму після відправлення
   };
 
   return (
     <Formik
-      initialValues={initialValues}
-      onSubmit={handleSumbit}
-      validationSchema={ContactFormSchema}
+      initialValues={initialValues} // Встановлюємо початкові значення форми
+      onSubmit={handleSumbit} // Викликаємо функцію при відправленні форми
+      validationSchema={ContactFormSchema} // Додаємо схему валідації
     >
       <Form className={css.form}>
+        {' '}
+        {/* Форма для додавання контакту */}
         <div>
           <label className={css.label} htmlFor={nameFieldId}>
             Name
@@ -59,7 +65,7 @@ const ContactForm = () => {
           <ErrorMessage
             name="username"
             component="span"
-            className={css.spanMessage}
+            className={css.spanMessage} // Відображаємо повідомлення про помилки
           />
         </div>
         <div>
@@ -75,11 +81,11 @@ const ContactForm = () => {
           <ErrorMessage
             name="phone"
             component="span"
-            className={css.spanMessage}
+            className={css.spanMessage} // Відображаємо повідомлення про помилки
           />
         </div>
         <button className={css.btn} type="submit">
-          Add contact
+          Add contact {/* Кнопка для додавання контакту */}
         </button>
       </Form>
     </Formik>

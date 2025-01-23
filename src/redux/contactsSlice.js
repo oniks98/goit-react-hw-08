@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'; // Імпортуємо функцію createSlice для створення Redux slice
 import { fetchContacts, addContact, deleteContact } from './contactsOps';
 
 const handlePending = state => {
@@ -9,15 +9,15 @@ const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
-
+// Створюємо slice для управління контактами
 const contactsSlice = createSlice({
-  name: 'contacts',
+  name: 'contacts', // Назва slice
   initialState: {
     items: [],
     isLoading: false,
     error: null,
   },
-
+  // Додаємо обробку зовнішніх екшенів
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.pending, handlePending)
@@ -46,10 +46,11 @@ const contactsSlice = createSlice({
   },
 });
 
+// Експортуємо редюсер для додавання в store
 export default contactsSlice.reducer;
 
 //  2 -й варіант  з addMatcher
-// import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+// import { createSlice, isAnyOf } from '@reduxjs/toolkit'; // Імпортуємо функції createSlice і isAnyOf для створення Redux slice
 // import { fetchContacts, addContact, deleteContact } from './contactsOps';
 
 // const handlePending = state => {
@@ -81,7 +82,7 @@ export default contactsSlice.reducer;
 
 // // Створюємо slice для управління контактами
 // const contactsSlice = createSlice({
-//   name: 'contacts',
+//   name: 'contacts', // Назва slice
 //   initialState: {
 //     items: [],
 //     isLoading: false,
@@ -112,5 +113,5 @@ export default contactsSlice.reducer;
 //   },
 // });
 
-//
+// // Експортуємо редюсер для додавання в store
 // export default contactsSlice.reducer;
