@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'; // Хук для відправлення екшенів у Redux
-import { deleteContact } from '../../redux/contactsOps'; // Імпортуємо екшен для видалення контакту
+import { deleteContact } from '../../redux/contacts/operations'; // Імпортуємо екшен для видалення контакту
 
 import { HiUser } from 'react-icons/hi'; // Іконка користувача
 import { BsFillTelephoneFill } from 'react-icons/bs'; // Іконка телефону

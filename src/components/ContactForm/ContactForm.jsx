@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'; // Хук для відправлення екшенів у Redux
-import { addContact } from '../../redux/contactsOps'; // Імпортуємо екшен для додавання контакту
+import { addContact } from '../../redux/contacts/operations'; // Імпортуємо екшен для додавання контакту
 import { Formik, Form, Field, ErrorMessage } from 'formik'; // Бібліотека для керування формами
 import { useId } from 'react'; // Хук для генерації унікальних ID
 import * as Yup from 'yup'; // Бібліотека для валідації форм

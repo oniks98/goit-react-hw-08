@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'; // Імпортуємо хуки для роботи з Redux
-import { changeFilter } from '../../redux/filtersSlice'; // Імпортуємо екшен для зміни фільтра
+import { changeFilter } from '../../redux/filters/slice'; // Імпортуємо екшен для зміни фільтра
 
 import css from './SearchBox.module.css';
 

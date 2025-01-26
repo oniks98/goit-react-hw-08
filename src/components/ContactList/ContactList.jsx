@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'; // Хук для отримання даних зі сховища Redux
 import Contact from '../Contact/Contact'; // Імпортуємо компонент Contact
-import { selectVisibleContacts } from '../../redux/selectors';
+import { selectVisibleContacts } from '../../redux/filters/selectors';
 import css from './ContactList.module.css';
 
 // Компонент ContactList відображає список контактів

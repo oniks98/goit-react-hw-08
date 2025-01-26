@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'; // Імпортуємо функцію createSlice для створення Redux slice
-import { fetchContacts, addContact, deleteContact } from './contactsOps';
+import { fetchContacts, addContact, deleteContact } from './operations';
 
 const handlePending = state => {
   state.isLoading = true;
