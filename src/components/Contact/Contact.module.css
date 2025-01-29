@@ -16,7 +16,6 @@
 }
 
 .btn {
-  /* display: block; */
   text-align: center;
   padding: 4px 8px;
   cursor: pointer;
@@ -48,6 +47,19 @@
   width: 300px;
 }
 
+.modalDelete {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 300px;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -64,7 +76,6 @@
 .cancelBtn {
   margin: 10px;
   padding: 8px 16px;
-
   border-radius: 4px;
   cursor: pointer;
 }
@@ -94,6 +105,7 @@
 .buttonGroup {
   display: flex;
   gap: 10px;
+  text-align: center;
 }
 
 .btnSave {
@@ -108,6 +120,7 @@
 .btnSave:hover {
   background-color: rgb(176, 176, 236);
 }
+
 .label {
   display: flex;
   flex-direction: column;
@@ -116,4 +129,17 @@
 
 .field {
   width: 270px;
+}
+
+.noBtn {
+  background-color: rgb(206, 210, 232);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 10px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.noBtn:hover {
+  background-color: rgb(176, 176, 236);
 }

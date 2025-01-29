@@ -63,7 +63,7 @@ const Contact = ({ id, name, number }) => {
       <Modal
         isOpen={isDeleteModalOpen}
         onRequestClose={() => setIsDeleteModalOpen(false)}
-        className={css.modal}
+        className={css.modalDelete}
         overlayClassName={css.overlay}
       >
         <p>Are you sure you want to delete this contact?</p>
@@ -71,7 +71,7 @@ const Contact = ({ id, name, number }) => {
           Yes
         </button>
         <button
-          className={css.cancelBtn}
+          className={css.noBtn}
           onClick={() => setIsDeleteModalOpen(false)}
         >
           No
