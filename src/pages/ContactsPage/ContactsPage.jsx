@@ -4,7 +4,6 @@ import DocumentTitle from '../../components/DocumentTitle';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import SearchBox from '../../components/SearchBox/SearchBox';
 import ContactList from '../../components/ContactList/ContactList';
-// import { Contact } from '../../components/Contact/Contact';
 import { fetchContacts } from '../../redux/contacts/operations';
 import { selectIsLoading } from '../../redux/contacts/selectors';
 
@@ -19,7 +18,6 @@ export default function ContactsPage() {
   return (
     <>
       <DocumentTitle>Your tasks</DocumentTitle>
-      {/* <Contact /> */}
       <div>{isLoading && 'Request in progress...'}</div>
       <ContactForm />
       <SearchBox />

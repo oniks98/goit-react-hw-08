@@ -1,19 +1,15 @@
-import { createSelector } from '@reduxjs/toolkit'; // Імпортуємо функцію createSelector з бібліотеки @reduxjs/toolkit для створення мемоізованих селекторів
+import { createSelector } from '@reduxjs/toolkit';
 import { selectContacts } from '../contacts/selectors';
 
-// Селектор для отримання значення фільтра за ім'ям
 export const selectNameFilter = state => state.filters.name;
-// Вибирає значення фільтра за ім'ям з об'єкта filters (state.filters.name)
 
-// Створюємо мемоізований селектор для отримання видимих контактів, які відповідають фільтру
 export const selectVisibleContacts = createSelector(
-  [selectContacts, selectNameFilter], // Массив селекторів, які передаються в createSelector
+  [selectContacts, selectNameFilter],
   (contacts, nameFilter) => {
-    // Функція, яка буде обробляти ці дані
     return contacts.filter(
-      (
-        contact // Фільтруємо контакти
-      ) => contact.name.toLowerCase().includes(nameFilter.toLowerCase()) // Перевіряємо, чи містить ім'я контакту значення фільтра (не чутливе до регістру)
+      contact =>
+        contact.name.toLowerCase().includes(nameFilter.toLowerCase().trim()) ||
+        contact.number.toLowerCase().includes(nameFilter.toLowerCase().trim())
     );
   }
 );

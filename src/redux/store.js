@@ -1,7 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit'; // Імпортуємо функцію для налаштування Redux store
-
-import { persistStore, persistReducer } from 'redux-persist'; // Імпортуємо функції для збереження стану
-import storage from 'redux-persist/lib/storage'; // Імпортуємо сховище для збереження в localStorage
+import { configureStore } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import {
   FLUSH,
   REHYDRATE,
@@ -9,19 +8,18 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist'; // Імпортуємо постійні значення для роботи з персистенцією
+} from 'redux-persist';
 
 import contactsReducer from './contacts/slice';
 import filtersReducer from './filters/slice';
 import authReducer from './auth/slice';
 
 const authPersistConfig = {
-  key: 'auth', // Ключ для збереження в localStorage
-  storage, // Використовуємо localStorage для збереження
+  key: 'auth',
+  storage,
   whitelist: ['token'],
 };
 
-// Налаштовуємо Redux store
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
@@ -37,5 +35,4 @@ export const store = configureStore({
   devTools: import.meta.env.MODE === 'development',
 });
 
-// Створюємо persistor для відновлення збереженого стану
 export const persistor = persistStore(store);

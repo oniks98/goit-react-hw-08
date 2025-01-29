@@ -7,10 +7,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .btn {
-  display: block;
+  /* display: block; */
   text-align: center;
   padding: 4px 8px;
   cursor: pointer;
@@ -27,4 +33,87 @@
   display: flex;
   gap: 5px;
   align-items: center;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  width: 300px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmBtn,
+.cancelBtn {
+  margin: 10px;
+  padding: 8px 16px;
+
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirmBtn {
+  background-color: rgb(206, 210, 232);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cancelBtn {
+  background-color: rgb(206, 210, 232);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  width: 85px;
+  padding: 8px 16px;
+  margin: 10px auto;
+}
+
+.confirmBtn:hover {
+  background-color: rgb(176, 176, 236);
+}
+
+.cancelBtn:hover {
+  background-color: rgb(176, 176, 236);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.btnSave {
+  display: block;
+  background-color: rgb(206, 210, 232);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 85px;
+  padding: 8px 16px;
+  margin: auto;
+}
+
+.btnSave:hover {
+  background-color: rgb(176, 176, 236);
+}
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.field {
+  width: 270px;
 }

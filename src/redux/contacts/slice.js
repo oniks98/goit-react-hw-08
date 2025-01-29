@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'; // Імпортуємо функцію createSlice для створення Redux slice
+import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
 
 const handlePending = state => {
@@ -9,15 +9,14 @@ const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
-// Створюємо slice для управління контактами
+
 const contactsSlice = createSlice({
-  name: 'contacts', // Назва slice
+  name: 'contacts',
   initialState: {
     items: [],
     isLoading: false,
     error: null,
   },
-  // Додаємо обробку зовнішніх екшенів
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.pending, handlePending)
@@ -46,7 +45,6 @@ const contactsSlice = createSlice({
   },
 });
 
-// Експортуємо редюсер для додавання в store
 export default contactsSlice.reducer;
 
 //  2 -й варіант  з addMatcher
