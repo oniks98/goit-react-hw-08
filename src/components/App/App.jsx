@@ -7,6 +7,7 @@ import { RestrictedRoute } from '../RestrictedRoute';
 import { refreshUser } from '../../redux/auth/operations';
 import { selectIsRefreshing } from '../../redux/auth/selectors';
 import { Toaster } from 'react-hot-toast';
+import css from './App.module.css';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const RegistrationPage = lazy(() =>
@@ -26,7 +27,9 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <div className={css.container}>
+      <b>Refreshing user...</b>
+    </div>
   ) : (
     <>
       <Toaster position="top-center" reverseOrder={false} />
