@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { logIn } from '../../redux/auth/operations';
-import css from './LoginForm.module.css';
+import { TextField, Button, Box, Typography, FormControl } from '@mui/material';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -32,36 +32,52 @@ export const LoginForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      {() => (
-        <Form className={css.form} autoComplete="on">
-          <label className={css.label}>
-            Email
-            <Field type="email" name="email" autoComplete="email" />
-            <ErrorMessage component="div" name="email" className={css.error} />
-          </label>
-          <label className={css.label}>
-            Password
-            <Field
-              type="password"
-              name="password"
-              autoComplete="current-password"
-            />
-            <ErrorMessage
-              component="div"
-              name="password"
-              className={css.error}
-            />
-          </label>
-          <button className={css.button} type="submit">
-            Log In
-          </button>
-        </Form>
-      )}
-    </Formik>
+    <Box sx={{ width: 450, margin: 'auto' }}>
+      <Typography variant="h4" align="center" gutterBottom>
+        Login
+      </Typography>
+
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ errors, touched }) => (
+          <Form autoComplete="on">
+            <FormControl fullWidth margin="normal">
+              <Field
+                as={TextField}
+                name="email"
+                label="Email"
+                variant="outlined"
+                type="email"
+                required
+                autoComplete="email"
+                error={touched.email && Boolean(errors.email)}
+                helperText={touched.email && errors.email}
+              />
+            </FormControl>
+
+            <FormControl fullWidth margin="normal">
+              <Field
+                as={TextField}
+                name="password"
+                label="Password"
+                variant="outlined"
+                type="password"
+                required
+                autoComplete="current-password"
+                error={touched.password && Boolean(errors.password)}
+                helperText={touched.password && errors.password}
+              />
+            </FormControl>
+
+            <Button variant="contained" color="primary" fullWidth type="submit">
+              Log In
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </Box>
   );
 };

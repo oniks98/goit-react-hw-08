@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { changeFilter } from '../../redux/filters/slice';
-
-import css from './SearchBox.module.css';
+import { TextField, Box, Typography } from '@mui/material';
+import styles from './SearchBox.module.css';
 
 const SearchBox = () => {
   const dispatch = useDispatch();
@@ -10,18 +10,21 @@ const SearchBox = () => {
   const onSearch = name => dispatch(changeFilter(name));
 
   return (
-    <div className={css.findblock}>
-      <p>Find contacts by name</p>
-      <input
-        type="text"
-        className={css.inputblock}
+    <Box className={styles.container}>
+      <Typography variant="h6" gutterBottom className={styles.title}>
+        Find contacts by name
+      </Typography>
+      <TextField
+        id="search-input"
+        label="Search"
+        variant="outlined"
+        fullWidth
         value={name}
         onChange={e => onSearch(e.target.value)}
         autoComplete="name"
-        name="findByName"
-        id="search-input"
+        className={styles.input}
       />
-    </div>
+    </Box>
   );
 };
 

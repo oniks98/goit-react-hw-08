@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../redux/auth/operations';
 import { selectUser } from '../../redux/auth/selectors';
+import { Button, Typography, Box } from '@mui/material';
 import css from './UserMenu.module.css';
 
 export const UserMenu = () => {
@@ -8,15 +9,18 @@ export const UserMenu = () => {
   const user = useSelector(selectUser);
 
   return (
-    <div className={css.wrapper}>
-      <p className={css.username}>Welcome, {user.name}</p>
-      <button
-        type="button"
+    <Box className={css.wrapper}>
+      <Typography className={css.username} variant="h6" component="p">
+        Welcome, {user.name}
+      </Typography>
+      <Button
         className={css.button}
+        variant="contained"
+        color="secondary"
         onClick={() => dispatch(logOut())}
       >
         Logout
-      </button>
-    </div>
+      </Button>
+    </Box>
   );
 };

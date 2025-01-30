@@ -1,23 +1,18 @@
 .form {
-  width: 450px;
-}
-
-.label {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+}
+
+.field {
   margin-bottom: 16px;
 }
 
-.button {
-  display: block;
-  text-align: center;
-  padding: 4px 8px;
-  cursor: pointer;
-  background-color: rgb(206, 210, 232);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  margin: 0 auto;
+.error {
+  color: red;
+  font-size: 12px;
 }
 
-.button:hover {
-  background-color: rgb(176, 176, 236);
+.button {
+  margin-top: 16px;
 }

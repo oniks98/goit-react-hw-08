@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { Box, Typography } from '@mui/material';
 import css from './AuthNav.module.css';
 
 export const AuthNav = () => {
@@ -6,13 +7,17 @@ export const AuthNav = () => {
     isActive ? `${css.link} ${css.active}` : css.link;
 
   return (
-    <div>
-      <NavLink to="/register" className={getNavLinkClass}>
-        Register
-      </NavLink>
-      <NavLink to="/login" className={getNavLinkClass}>
-        Log In
-      </NavLink>
-    </div>
+    <Box display="flex" alignItems="center">
+      <Typography variant="h6" component="span" sx={{ mr: 2 }}>
+        <NavLink to="/register" className={getNavLinkClass}>
+          Register
+        </NavLink>
+      </Typography>
+      <Typography variant="h6" component="span">
+        <NavLink to="/login" className={getNavLinkClass}>
+          Login
+        </NavLink>
+      </Typography>
+    </Box>
   );
 };

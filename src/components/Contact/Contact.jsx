@@ -1,36 +1,35 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   deleteContact,
   updateContact,
   fetchContacts,
 } from '../../redux/contacts/operations';
-import Modal from 'react-modal';
-import { useState } from 'react';
-import toast from 'react-hot-toast';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { Modal, Button, TextField, Typography } from '@mui/material';
 import { HiUser } from 'react-icons/hi';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import css from './Contact.module.css';
-
-Modal.setAppElement('#root');
+import toast from 'react-hot-toast';
 
 const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editedName, setEditedName] = useState(name);
+  const [editedNumber, setEditedNumber] = useState(number);
 
   const handleDelete = () => {
     dispatch(deleteContact(id));
+    dispatch(fetchContacts());
     toast.error(`Contact ${name} deleted!`);
     setIsDeleteModalOpen(false);
   };
 
-  const handleEditSubmit = values => {
-    dispatch(updateContact({ id, name: values.username, number: values.phone }))
+  const handleEditSubmit = () => {
+    dispatch(updateContact({ id, name: editedName, number: editedNumber }))
       .then(() => {
-        dispatch(fetchContacts()); // Оновлюємо список контактів після успішного редагування
-        toast.success(`Contact ${values.username} updated!`);
+        dispatch(fetchContacts());
+        toast.success(`Contact ${editedName} updated!`);
         setIsEditModalOpen(false);
       })
       .catch(error => {
@@ -42,93 +41,91 @@ const Contact = ({ id, name, number }) => {
     <div className={css.item}>
       <div className={css.datablock}>
         <p className={css.text}>
-          <HiUser />
-          {name}
+          <HiUser /> {name}
         </p>
         <p className={css.text}>
-          <BsFillTelephoneFill />
-          {number}
+          <BsFillTelephoneFill /> {number}
         </p>
       </div>
       <div className={css.buttonGroup}>
-        <button className={css.btn} onClick={() => setIsEditModalOpen(true)}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => setIsEditModalOpen(true)}
+        >
           Edit
-        </button>
-        <button className={css.btn} onClick={() => setIsDeleteModalOpen(true)}>
+        </Button>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={() => setIsDeleteModalOpen(true)}
+        >
           Delete
-        </button>
+        </Button>
       </div>
 
-      {/* Модальне вікно для видалення */}
-      <Modal
-        isOpen={isDeleteModalOpen}
-        onRequestClose={() => setIsDeleteModalOpen(false)}
-        className={css.modalDelete}
-        overlayClassName={css.overlay}
-      >
-        <p>Are you sure you want to delete this contact?</p>
-        <button className={css.confirmBtn} onClick={handleDelete}>
-          Yes
-        </button>
-        <button
-          className={css.noBtn}
-          onClick={() => setIsDeleteModalOpen(false)}
-        >
-          No
-        </button>
+      {/* Modal for Edit */}
+      <Modal open={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
+        <div className={css.modal}>
+          <Typography variant="h6">Edit Contact</Typography>
+          <TextField
+            label="Name"
+            value={editedName}
+            onChange={e => setEditedName(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Phone Number"
+            value={editedNumber}
+            onChange={e => setEditedNumber(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <div className={css.buttonGroup}>
+            <Button
+              onClick={handleEditSubmit}
+              variant="contained"
+              color="primary"
+            >
+              Save Changes
+            </Button>
+            <Button
+              onClick={() => setIsEditModalOpen(false)}
+              variant="outlined"
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
       </Modal>
 
-      {/* Модальне вікно для редагування */}
+      {/* Modal for Delete */}
       <Modal
-        isOpen={isEditModalOpen}
-        onRequestClose={() => setIsEditModalOpen(false)}
-        className={css.modal}
-        overlayClassName={css.overlay}
+        open={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
       >
-        <h2>Edit Contact</h2>
-        <Formik
-          initialValues={{ username: name, phone: number }}
-          validationSchema={Yup.object({
-            username: Yup.string()
-              .min(3, 'Too Short!')
-              .max(50, 'Too Long!')
-              .required('Required'),
-            phone: Yup.string()
-              .matches(/^\d{3}-\d{3}-\d{4}$/, 'Format: XXX-XXX-XXXX')
-              .required('Required'),
-          })}
-          onSubmit={handleEditSubmit}
-        >
-          <Form className={css.form}>
-            <label className={css.label}>
-              Name:
-              <Field className={css.field} type="text" name="username" />
-              <ErrorMessage
-                name="username"
-                component="span"
-                className={css.error}
-              />
-            </label>
-            <label className={css.label}>
-              Number:
-              <Field className={css.field} type="tel" name="phone" />
-              <ErrorMessage
-                name="phone"
-                component="span"
-                className={css.error}
-              />
-            </label>
-            <button className={css.btnSave} type="submit">
-              Save
-            </button>
-          </Form>
-        </Formik>
-        <button
-          className={css.cancelBtn}
-          onClick={() => setIsEditModalOpen(false)}
-        >
-          Cancel
-        </button>
+        <div className={css.modal}>
+          <Typography variant="h6">
+            Are you sure you want to delete this contact?
+          </Typography>
+
+          <div className={css.buttonGroup}>
+            <Button
+              onClick={handleDelete}
+              variant="contained"
+              color="secondary"
+            >
+              Yes, Delete
+            </Button>
+            <Button
+              onClick={() => setIsDeleteModalOpen(false)}
+              variant="outlined"
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
       </Modal>
     </div>
   );

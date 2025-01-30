@@ -4,7 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useId } from 'react';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
-import css from './ContactForm.module.css';
+import { TextField, Button, Box, Typography } from '@mui/material';
+import styles from './ContactForm.module.css';
 
 const ContactFormSchema = Yup.object().shape({
   username: Yup.string()
@@ -38,7 +39,7 @@ const ContactForm = () => {
       })
     );
 
-    toast.success(`Contact ${values.username} added successfully!`); // Відображаємо сповіщення
+    toast.success(`Contact ${values.username} added successfully!`);
 
     actions.resetForm();
   };
@@ -49,44 +50,57 @@ const ContactForm = () => {
       onSubmit={handleSubmit}
       validationSchema={ContactFormSchema}
     >
-      <Form className={css.form}>
-        <div>
-          <label className={css.label} htmlFor={nameFieldId}>
+      <Form className={styles.form}>
+        <Box className={styles.inputContainer}>
+          <Typography variant="h6" className={styles.inputLabel}>
             Name
-          </label>
+          </Typography>
           <Field
-            className={css.field}
-            type="text"
+            as={TextField}
+            className={styles.inputField}
             name="username"
             id={nameFieldId}
+            label="Enter name"
+            fullWidth
+            variant="outlined"
             autoComplete="name"
           />
           <ErrorMessage
             name="username"
             component="span"
-            className={css.spanMessage}
+            className={styles.errorMessage}
           />
-        </div>
-        <div>
-          <label className={css.label} htmlFor={phoneFieldId}>
+        </Box>
+
+        <Box className={styles.inputContainer}>
+          <Typography variant="h6" className={styles.inputLabel}>
             Number
-          </label>
+          </Typography>
           <Field
-            className={css.field}
-            type="tel"
+            as={TextField}
+            className={styles.inputField}
             name="phone"
             id={phoneFieldId}
+            label="Enter phone number"
+            fullWidth
+            variant="outlined"
             autoComplete="tel"
           />
           <ErrorMessage
             name="phone"
             component="span"
-            className={css.spanMessage}
+            className={styles.errorMessage}
           />
-        </div>
-        <button className={css.btn} type="submit">
+        </Box>
+
+        <Button
+          className={styles.submitButton}
+          type="submit"
+          variant="contained"
+          fullWidth
+        >
           Add contact
-        </button>
+        </Button>
       </Form>
     </Formik>
   );

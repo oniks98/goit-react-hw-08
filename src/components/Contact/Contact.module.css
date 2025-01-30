@@ -1,37 +1,33 @@
 .item {
-  width: 450px;
-  padding: 5px 10px;
-  border: 2px solid #939090;
-  border-radius: 4px;
-  text-align: left;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-.btn {
-  text-align: center;
-  padding: 4px 8px;
-  cursor: pointer;
-  background-color: rgb(206, 210, 232);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  height: 30px;
-}
-
-.btn:hover {
-  background-color: rgb(176, 176, 236);
+.datablock {
+  display: flex;
+  flex-direction: column;
 }
 
 .text {
   display: flex;
-  gap: 5px;
   align-items: center;
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.text svg {
+  margin-right: 8px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
 
 .modal {
@@ -39,107 +35,14 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
+  background-color: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-  text-align: left;
-  width: 300px;
-}
-
-.modalDelete {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  width: 300px;
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.confirmBtn,
-.cancelBtn {
-  margin: 10px;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.confirmBtn {
-  background-color: rgb(206, 210, 232);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cancelBtn {
-  background-color: rgb(206, 210, 232);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  display: block;
-  width: 85px;
-  padding: 8px 16px;
-  margin: 10px auto;
-}
-
-.confirmBtn:hover {
-  background-color: rgb(176, 176, 236);
-}
-
-.cancelBtn:hover {
-  background-color: rgb(176, 176, 236);
-}
-
-.buttonGroup {
-  display: flex;
-  gap: 10px;
+  width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
-.btnSave {
-  display: block;
-  background-color: rgb(206, 210, 232);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  width: 85px;
-  padding: 8px 16px;
-  margin: auto;
-}
-
-.btnSave:hover {
-  background-color: rgb(176, 176, 236);
-}
-
-.label {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-}
-
-.field {
-  width: 270px;
-}
-
-.noBtn {
-  background-color: rgb(206, 210, 232);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  margin: 10px;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.noBtn:hover {
-  background-color: rgb(176, 176, 236);
+.modal button {
+  margin-top: 10px;
 }
