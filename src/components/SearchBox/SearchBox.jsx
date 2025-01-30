@@ -17,6 +17,9 @@ const SearchBox = () => {
         className={css.inputblock}
         value={name}
         onChange={e => onSearch(e.target.value)}
+        autoComplete="name"
+        name="findByName"
+        id="search-input"
       />
     </div>
   );

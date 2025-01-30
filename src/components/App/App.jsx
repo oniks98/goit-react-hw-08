@@ -30,35 +30,32 @@ export const App = () => {
   ) : (
     <>
       <Toaster position="top-center" reverseOrder={false} />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
           <Route
-            path="/register"
+            path="register"
             element={
               <RestrictedRoute
                 redirectTo="/contacts"
-                component={<RegistrationPage />}
+                element={<RegistrationPage />}
               />
             }
           />
           <Route
-            path="/login"
+            path="login"
             element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={<LoginPage />}
-              />
+              <RestrictedRoute redirectTo="/contacts" element={<LoginPage />} />
             }
           />
           <Route
-            path="/contacts"
+            path="contacts"
             element={
-              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+              <PrivateRoute redirectTo="/login" element={<ContactsPage />} />
             }
           />
-        </Routes>
-      </Layout>
+        </Route>
+      </Routes>
     </>
   );
 };

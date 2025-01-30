@@ -59,6 +59,7 @@ const ContactForm = () => {
             type="text"
             name="username"
             id={nameFieldId}
+            autoComplete="name"
           />
           <ErrorMessage
             name="username"
@@ -75,6 +76,7 @@ const ContactForm = () => {
             type="tel"
             name="phone"
             id={phoneFieldId}
+            autoComplete="tel"
           />
           <ErrorMessage
             name="phone"
