@@ -4,36 +4,38 @@ import {
   deleteContact,
   updateContact,
   fetchContacts,
-} from '../../redux/contacts/operations';
-import { Modal, Button, TextField, Typography } from '@mui/material';
-import { HiUser } from 'react-icons/hi';
-import { BsFillTelephoneFill } from 'react-icons/bs';
-import css from './Contact.module.css';
-import toast from 'react-hot-toast';
+} from '../../redux/contacts/operations'; // Імпорт операцій для роботи з контактами
+import { Modal, Button, TextField, Typography } from '@mui/material'; // Компоненти Material UI
+import { HiUser } from 'react-icons/hi'; // Іконка користувача
+import { BsFillTelephoneFill } from 'react-icons/bs'; // Іконка телефону
+import css from './Contact.module.css'; // Стилі
+import toast from 'react-hot-toast'; // Бібліотека для сповіщень
 
 const Contact = ({ id, name, number }) => {
-  const dispatch = useDispatch();
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [editedName, setEditedName] = useState(name);
-  const [editedNumber, setEditedNumber] = useState(number);
+  const dispatch = useDispatch(); // Хук для виклику Redux-екшенів
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // Стан для модального вікна видалення
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false); // Стан для модального вікна редагування
+  const [editedName, setEditedName] = useState(name); // Локальний стан для редагування імені
+  const [editedNumber, setEditedNumber] = useState(number); // Локальний стан для редагування номера
 
+  // Функція для видалення контакту
   const handleDelete = () => {
-    dispatch(deleteContact(id));
-    dispatch(fetchContacts());
-    toast.error(`Contact ${name} deleted!`);
-    setIsDeleteModalOpen(false);
+    dispatch(deleteContact(id)); // Видаляємо контакт у Redux
+    dispatch(fetchContacts()); // Оновлюємо список контактів
+    toast.error(`Contact ${name} deleted!`); // Відображаємо сповіщення
+    setIsDeleteModalOpen(false); // Закриваємо модальне вікно
   };
 
+  // Функція для редагування контакту
   const handleEditSubmit = () => {
     dispatch(updateContact({ id, name: editedName, number: editedNumber }))
       .then(() => {
-        dispatch(fetchContacts());
-        toast.success(`Contact ${editedName} updated!`);
-        setIsEditModalOpen(false);
+        dispatch(fetchContacts()); // Оновлюємо список контактів після редагування
+        toast.success(`Contact ${editedName} updated!`); // Відображаємо сповіщення
+        setIsEditModalOpen(false); // Закриваємо модальне вікно
       })
       .catch(error => {
-        toast.error(`Failed to update contact: ${error.message}`);
+        toast.error(`Failed to update contact: ${error.message}`); // Помилка при редагуванні
       });
   };
 
@@ -41,13 +43,15 @@ const Contact = ({ id, name, number }) => {
     <div className={css.item}>
       <div className={css.datablock}>
         <p className={css.text}>
-          <HiUser /> {name}
+          <HiUser /> {name} {/* Відображаємо ім'я з іконкою */}
         </p>
         <p className={css.text}>
-          <BsFillTelephoneFill /> {number}
+          <BsFillTelephoneFill /> {number}{' '}
+          {/* Відображаємо номер телефону з іконкою */}
         </p>
       </div>
       <div className={css.buttonGroup}>
+        {/* Кнопка редагування */}
         <Button
           variant="contained"
           color="primary"
@@ -55,6 +59,7 @@ const Contact = ({ id, name, number }) => {
         >
           Edit
         </Button>
+        {/* Кнопка видалення */}
         <Button
           variant="outlined"
           color="secondary"
@@ -64,7 +69,7 @@ const Contact = ({ id, name, number }) => {
         </Button>
       </div>
 
-      {/* Modal for Edit */}
+      {/* Модальне вікно редагування */}
       <Modal open={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
         <div className={css.modal}>
           <Typography variant="h6">Edit Contact</Typography>
@@ -100,7 +105,7 @@ const Contact = ({ id, name, number }) => {
         </div>
       </Modal>
 
-      {/* Modal for Delete */}
+      {/* Модальне вікно підтвердження видалення */}
       <Modal
         open={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
